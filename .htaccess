@@ -1,6 +1,21 @@
 # BEGIN Cocoa SEO Rewrite
 RewriteEngine On
 
+# 301 Redirects: City pages consolidated to Brevard (prevents cannibalization)
+Redirect 301 /sell-my-house-fast-cocoa.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-cocoa
+Redirect 301 /sell-my-house-fast-cocoa-beach.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-cocoa-beach
+Redirect 301 /sell-my-house-fast-cape-canaveral.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-cape-canaveral
+Redirect 301 /sell-my-house-fast-merritt-island.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-merritt-island
+Redirect 301 /sell-my-house-fast-titusville.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-titusville
+Redirect 301 /sell-my-house-fast-rockledge.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-rockledge
+Redirect 301 /sell-my-house-fast-viera.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-viera
+Redirect 301 /sell-my-house-fast-melbourne.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-melbourne
+Redirect 301 /sell-my-house-fast-palm-bay.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-palm-bay
+Redirect 301 /sell-my-house-fast-satellite-beach.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-satellite-beach
+Redirect 301 /sell-my-house-fast-melbourne-beach.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-melbourne-beach
+Redirect 301 /sell-my-house-fast-indian-harbour-beach.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-indian-harbour-beach
+Redirect 301 /sell-my-house-fast-indialantic.html https://sellmyhousefastbrevardfl.com/sell-my-house-fast-indialantic
+
 # Redirect parameter URLs to homepage (fixes ?shops/ duplicate)
 RewriteCond %{QUERY_STRING} ^
 RewriteRule ^(.*)\?shops/.*$ / [R=301,L]
