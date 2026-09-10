@@ -1,15 +1,42 @@
+# BEGIN Cocoa SEO Rewrite
 RewriteEngine On
 
-# Redirect /index.html to /
-RewriteCond %{THE_REQUEST} /index\.html [NC]
-RewriteRule ^(.*?)index\.html$ /$1 [R=301,L,NC]
+# Redirect parameter URLs to homepage (fixes ?shops/ duplicate)
+RewriteCond %{QUERY_STRING} ^
+RewriteRule ^(.*)\?shops/.*$ / [R=301,L]
 
-# Redirect .html to clean URL
-RewriteCond %{THE_REQUEST} \s/([^.]+)\.html\s [NC]
-RewriteRule ^ /%1 [R=301,L,NC]
+# Remove trailing slashes for clean URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [R=301,L]
 
-# Serve .html file when clean URL requested
+# Serve .html files without extension in URL
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_URI} !\.
-RewriteRule ^([^/]+)/?$ /$1.html [L,NC]
+RewriteCond %{REQUEST_URI} !\.html$
+RewriteRule ^(.*)$ $1.html [L]
+
+# Block common spam bots
+RewriteCond %{HTTP_USER_AGENT} (MJ12bot|SemrushBot|AhrefsBot|DotBot|BLEXBot) [NC]
+RewriteRule .* - [F,L]
+
+# BEGIN Compression & Caching
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpg "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
