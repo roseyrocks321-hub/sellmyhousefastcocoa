@@ -1,9 +1,9 @@
 # BEGIN Cocoa SEO Rewrite
 RewriteEngine On
 
-# 410 GONE: Kill all spam /?shops/* URLs immediately
+# 410 GONE: Kill all spam /?shop/* and /?shops/* URLs immediately
 # These poison Google's trust signal and must return 410, not 200 or 301
-RewriteCond %{QUERY_STRING} ^shops/ [NC]
+RewriteCond %{QUERY_STRING} ^shops?/ [NC]
 RewriteRule ^ - [G,L]
 
 # 301 Redirects: City pages consolidated to Brevard (prevents cannibalization)
